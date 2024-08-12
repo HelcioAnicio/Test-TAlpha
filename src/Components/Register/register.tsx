@@ -36,7 +36,10 @@ export const Register = () => {
         password: registerData.password,
       }),
     });
-    console.log(registerData);
+
+    const data = apiRequest.json();
+    console.log(data);
+    // console.log(registerData);
 
     setRegisterData({
       name: "",
@@ -70,7 +73,7 @@ export const Register = () => {
             <label htmlFor='inputName'>Name: </label>
             <input
               className='border border-white bg-transparent'
-              type='string'
+              type='text'
               name='name'
               id='inputName'
               value={registerData.name}
@@ -82,7 +85,7 @@ export const Register = () => {
             <label htmlFor='inputtaxNumber'>Cpf ou Cnpj: </label>
             <input
               className='border border-white bg-transparent'
-              type='string'
+              type='text'
               name='taxNumber'
               id='inputtaxNumber'
               value={registerData.taxNumber}
