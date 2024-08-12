@@ -66,13 +66,13 @@ export const Register = () => {
       <form
         action=''
         method='post'>
-        <fieldset className='border-white border m-auto w-[calc(100%-1rem)] sm:w-full flex flex-col items-start gap-5 pt-10 p-2 rounded-md'>
+        <fieldset className='border-white border m-auto w-[calc(100%-1rem)] sm:w-full flex flex-col items-start gap-5 py-10 p-2 rounded-md  max-w-lg sm:items-center'>
           <legend className='ml-4'>Cadastrar</legend>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputName'>Name: </label>
             <input
-              className='border border-white bg-transparent'
+              className='border border-white bg-transparent p-1 rounded-md'
               type='text'
               name='name'
               id='inputName'
@@ -81,10 +81,10 @@ export const Register = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputtaxNumber'>Cpf ou Cnpj: </label>
             <input
-              className='border border-white bg-transparent'
+              className='border border-white bg-transparent p-1 rounded-md'
               type='text'
               name='taxNumber'
               id='inputtaxNumber'
@@ -93,10 +93,10 @@ export const Register = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputEmail'>Email: </label>
             <input
-              className='border border-white bg-transparent'
+              className='border border-white bg-transparent p-1 rounded-md'
               type='email'
               name='mail'
               id='inputEmail'
@@ -105,10 +105,10 @@ export const Register = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputPhone'>Celular: </label>
             <input
-              className='border border-white bg-transparent'
+              className='border border-white bg-transparent p-1 rounded-md'
               type='tel'
               name='phone'
               id='inputPhone'
@@ -117,10 +117,10 @@ export const Register = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputPassword'>Senha: </label>
             <input
-              className=' border border-white bg-transparent'
+              className='border border-white bg-transparent p-1 rounded-md'
               type='password'
               name='password'
               id='inputPassword'
@@ -132,7 +132,7 @@ export const Register = () => {
           <button
             type='submit'
             onClick={onClickRegister}
-            className='w-full bg-slate-500 rounded-sm p-1'>
+            className='bg-slate-500 rounded-sm p-1 w-full max-w-xs hover:bg-slate-700 duration-100'>
             Cadastrar
           </button>
         </fieldset>

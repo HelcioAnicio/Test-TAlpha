@@ -1,0 +1,29 @@
+POST https://interview.t-alpha.com.br/api/auth/login
+Content-Type: application/json
+
+{ 
+  "taxNumber": "12345678900",
+  "password": "123456"
+}
+
+
+###
+POST https://interview.t-alpha.com.br/api/products/create-product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzc0LCJpYXQiOjE3MjM0MDk4MjF9.viIrNQ2OZwYfKYVixUKru-liCceGBZtoURQu1zSGZiw
+
+{
+    "name": "TV 55' 4K Full HD",
+    "description": "Televisão com cores vibrantes",
+    "price": 2999.99,
+    "stock": 10
+}
+
+
+###
+GET  https://interview.t-alpha.com.br/api/products/get-all-products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mzc0LCJpYXQiOjE3MjM0MDY1MTZ9.efY3P8IinM635IKyywI2AJMa_4LXzz1BLzU9R28RDo8
+
+
+###

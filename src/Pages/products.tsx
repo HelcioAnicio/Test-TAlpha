@@ -1,5 +1,6 @@
 import { PencilIcon, TrashIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { Header } from "../Components/Header/header";
 
 interface Products {
   id?: number;
@@ -71,7 +72,8 @@ export const Products = () => {
       stock: "",
     });
 
-    listProducts(); // Recarrega a lista de produtos
+    // Recarrega a lista de produtos
+    listProducts();
   };
 
   const listProducts = async () => {
@@ -165,8 +167,11 @@ export const Products = () => {
       }),
     });
 
-    setEditingProductId(null); // Sai do modo de edição
-    listProducts(); // Recarrega a lista de produtos
+    // Sai do modo de edição
+    setEditingProductId(null);
+
+    // Recarrega a lista de produtos
+    listProducts();
   };
 
   const deleteProductById = async (id: number) => {
@@ -179,20 +184,21 @@ export const Products = () => {
       },
     });
 
-    listProducts(); // Recarrega a lista de produtos
+    // Recarrega a lista de produtos
+    listProducts();
   };
 
   return (
-    <div className='bg-gray-950 text-white h-full w-screen overflow-auto'>
-      <h1>Produtos</h1>
+    <div className='bg-gray-950 text-white h-full w-screen overflow-auto pb-16'>
+      <Header />
 
       <form
         action=''
         method='post'>
-        <fieldset className='border-white border m-auto w-[calc(100%-1rem)] sm:w-full flex flex-col items-start gap-5 pt-10 p-2 rounded-md'>
+        <fieldset className='border-white border m-auto w-[calc(100%-1rem)] sm:w-full flex flex-col items-start gap-5 py-10 p-2 rounded-md  max-w-lg sm:items-center'>
           <legend className='ml-4'>Cadastrar produtos</legend>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputProductName'>Name: </label>
             <input
               className='border border-white bg-transparent'
@@ -204,7 +210,7 @@ export const Products = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputDescription'>Description: </label>
             <input
               className='border border-white bg-transparent'
@@ -216,7 +222,7 @@ export const Products = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputPrice'>Price: </label>
             <input
               className='border border-white bg-transparent'
@@ -228,7 +234,7 @@ export const Products = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 w-full max-w-xs'>
             <label htmlFor='inputStock'>Stock: </label>
             <input
               className='border border-white bg-transparent'
@@ -243,87 +249,89 @@ export const Products = () => {
           <button
             type='submit'
             onClick={onClickProduct}
-            className='w-full bg-slate-500 rounded-sm p-1'>
+            className='bg-slate-500 rounded-sm p-1 w-full max-w-xs hover:bg-slate-700 duration-100'>
             Cadastrar
           </button>
         </fieldset>
       </form>
 
-      <section className='m-4 mt-10'>
-        <input
-          type='text'
-          value={productSearched}
-          placeholder='Buscar produto por ID'
-          onChange={handleChangeSearch}
-          className='border border-white bg-transparent'
-        />
-      </section>
+      <section className='m-4 mt-10 sm:m-auto sm:mt-10 p-4 flex flex-col gap-5 border-white border w-[calc(100%-1rem)] sm:w-full items-start py-10 rounded-md max-w-lg sm:items-center'>
+        <section>
+          <input
+            type='text'
+            value={productSearched}
+            placeholder='Buscar produto por ID'
+            onChange={handleChangeSearch}
+            className='border border-white bg-transparent '
+          />
+        </section>
 
-      <section className='p-4 flex flex-col gap-4'>
-        {renderProducts.length > 0 ? (
-          renderProducts.map((product) => (
-            <div
-              className='border border-white flex flex-col gap-2 rounded-lg max-w-xs p-2 relative'
-              key={product.id}>
-              {editingProductId === product.id ? (
-                <>
-                  <input
-                    type='text'
-                    name='name'
-                    value={editingProductData.name}
-                    onChange={handleEditChange}
-                    className='border border-white bg-transparent'
-                  />
-                  <input
-                    type='text'
-                    name='description'
-                    value={editingProductData.description}
-                    onChange={handleEditChange}
-                    className='border border-white bg-transparent'
-                  />
-                  <input
-                    type='number'
-                    name='price'
-                    value={editingProductData.price}
-                    onChange={handleEditChange}
-                    className='border border-white bg-transparent'
-                  />
-                  <input
-                    type='number'
-                    name='stock'
-                    value={editingProductData.stock}
-                    onChange={handleEditChange}
-                    className='border border-white bg-transparent'
-                  />
-                  <button
-                    onClick={(e) => saveEditedProduct(e, product.id!)}
-                    className='bg-green-500 text-white rounded p-1'>
-                    Enviar
-                  </button>
-                </>
-              ) : (
-                <>
-                  <h2>Name: {product.name}</h2>
-                  <p>Description: {product.description}</p>
-                  <p>Price: {product.price}</p>
-                  <p>Stock: {product.stock}</p>
-
-                  <div className='flex gap-4 absolute top-0 right-0'>
-                    <button onClick={() => startEditingProduct(product)}>
-                      <PencilIcon size={20} />
+        <section className='flex flex-col gap-4'>
+          {renderProducts.length > 0 ? (
+            renderProducts.map((product) => (
+              <div
+                className='border border-white flex flex-col gap-2 rounded-lg max-w-xs p-2 relative'
+                key={product.id}>
+                {editingProductId === product.id ? (
+                  <>
+                    <input
+                      type='text'
+                      name='name'
+                      value={editingProductData.name}
+                      onChange={handleEditChange}
+                      className='border border-white bg-transparent'
+                    />
+                    <input
+                      type='text'
+                      name='description'
+                      value={editingProductData.description}
+                      onChange={handleEditChange}
+                      className='border border-white bg-transparent'
+                    />
+                    <input
+                      type='number'
+                      name='price'
+                      value={editingProductData.price}
+                      onChange={handleEditChange}
+                      className='border border-white bg-transparent'
+                    />
+                    <input
+                      type='number'
+                      name='stock'
+                      value={editingProductData.stock}
+                      onChange={handleEditChange}
+                      className='border border-white bg-transparent'
+                    />
+                    <button
+                      onClick={(e) => saveEditedProduct(e, product.id!)}
+                      className='bg-green-500 text-white rounded p-1'>
+                      Enviar
                     </button>
+                  </>
+                ) : (
+                  <>
+                    <h2>Name: {product.name}</h2>
+                    <p>Description: {product.description}</p>
+                    <p>Price: {product.price}</p>
+                    <p>Stock: {product.stock}</p>
 
-                    <button onClick={() => deleteProductById(product.id!)}>
-                      <TrashIcon size={20} />
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>No products found</p>
-        )}
+                    <div className='flex gap-4 absolute top-0 right-0'>
+                      <button onClick={() => startEditingProduct(product)}>
+                        <PencilIcon size={20} />
+                      </button>
+
+                      <button onClick={() => deleteProductById(product.id!)}>
+                        <TrashIcon size={20} />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No products found</p>
+          )}
+        </section>
       </section>
     </div>
   );
