@@ -1,15 +1,22 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+interface LoginProps {
+  onLoginSuccess: (token: string) => void;
+}
 
 interface Login {
   taxNumber: string;
   password: string;
 }
 
-export const Login = () => {
+export const Login = ({ onLoginSuccess }: LoginProps) => {
   const [loginData, setLoginData] = useState<Login>({
     taxNumber: "",
     password: "",
   });
+
+  const navegate = useNavigate();
 
   const baseUrl = "https://interview.t-alpha.com.br/api/";
 
@@ -27,11 +34,17 @@ export const Login = () => {
         password: loginData.password,
       }),
     });
-    console.log(loginData);
-    setLoginData({
-      taxNumber: "",
-      password: "",
-    });
+    // console.log(loginData);
+
+    const data = await response.json();
+    const token = data?.data?.token;
+    console.log(data);
+
+    if (token) {
+      localStorage.setItem("token", token);
+      onLoginSuccess(token);
+      navegate("/products");
+    }
 
     return response;
   };
@@ -48,7 +61,7 @@ export const Login = () => {
   return (
     <>
       <form
-        action=''
+        action='/products'
         method='post'>
         <fieldset className='border-white border m-auto w-[calc(100%-1rem)] sm:w-full flex flex-col items-start gap-5 pt-10 p-2 rounded-md'>
           <legend className='ml-4'>Login</legend>
