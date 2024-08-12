@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Test T-Alpha
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
 
-Currently, two official plugins are available:
+O **Test T-Alpha** é uma aplicação web que permite o gerenciamento de produtos, incluindo a capacidade de listar, adicionar, editar e excluir produtos. A aplicação também possui um sistema de autenticação básico para acesso às funcionalidades.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+### Autenticação
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Login:** Usuários podem fazer login na aplicação. Ao acessar a tela de login, qualquer token existente é removido para garantir que o usuário não esteja autenticado erroneamente.
+- **Logout:** Usuários autenticados podem fazer logout, removendo o token do local storage e redirecionando-os para a página de login.
 
-- Configure the top-level `parserOptions` property like this:
+### Gerenciamento de Produtos
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Listar Produtos:** Exibe todos os produtos cadastrados na aplicação.
+- **Buscar Produtos:** Permite a busca de produtos pelo ID.
+- **Adicionar Produtos:** Usuários autenticados podem adicionar novos produtos fornecendo nome, descrição, preço e quantidade em estoque.
+- **Editar Produtos:** Usuários autenticados podem editar os detalhes de produtos existentes.
+- **Excluir Produtos:** Usuários autenticados podem excluir produtos da lista.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Estrutura do Projeto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Componentes Principais
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Header:** Componente de cabeçalho que inclui um botão de logout visível apenas quando um token de autenticação está presente.
+- **Login:** Tela de login onde os usuários podem autenticar-se e acessar a aplicação.
+- **Products:** Tela principal para gerenciamento de produtos, incluindo formulário para adicionar e editar produtos e uma lista para exibição.
+
+### Arquivos e Diretórios
+
+- `src/`: Diretório principal com o código fonte da aplicação.
+  - `components/`: Contém os componentes React usados na aplicação.
+    - `Header.tsx`: Componente de cabeçalho.
+    - `Login.tsx`: Tela de login.
+    - `Products.tsx`: Tela de gerenciamento de produtos.
+  - `App.tsx`: Componente principal da aplicação que configura as rotas.
+  - `index.tsx`: Ponto de entrada da aplicação.
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues para sugerir melhorias ou relatar problemas.
