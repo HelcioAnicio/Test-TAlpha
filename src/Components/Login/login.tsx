@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
@@ -19,6 +19,11 @@ export const Login = ({ onLoginSuccess }: LoginProps) => {
   const navegate = useNavigate();
 
   const baseUrl = "https://interview.t-alpha.com.br/api/";
+
+  useEffect(() => {
+    // Remove o token ao acessar a tela de login
+    localStorage.removeItem("token");
+  }, []);
 
   const onClickLogin = async (e: React.FormEvent) => {
     e.preventDefault();
